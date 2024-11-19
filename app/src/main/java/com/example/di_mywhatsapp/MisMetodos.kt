@@ -19,11 +19,13 @@ import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -104,6 +106,21 @@ fun MyTopBar(
 }
 
 @Composable
+fun MyFAB(){
+
+    FloatingActionButton(
+        modifier = Modifier
+            .padding(bottom = 40.dp, end = 20.dp),
+        containerColor = MaterialTheme.colorScheme.primary,
+        onClick = {}
+    ) {
+        Icon(
+            imageVector = Icons.Default.Check,
+            contentDescription = "ArrowBack"
+        )
+    }
+}
+@Composable
 @OptIn(ExperimentalFoundationApi::class)
 fun MainScreen(modifier: Modifier){
     val tabs = listOf("Chats", "Novedades", "Llamadas")
@@ -113,13 +130,17 @@ fun MainScreen(modifier: Modifier){
     )
     val coroutineScope = rememberCoroutineScope()
     Column (modifier = modifier.fillMaxSize()){
-        TabRow(selectedTabIndex = pagerState.currentPage,
+        TabRow(
+            selectedTabIndex = pagerState.currentPage,
             contentColor = MaterialTheme.colorScheme.onPrimary,
             containerColor = MaterialTheme.colorScheme.primary) {
             tabs.forEachIndexed { index, title ->
                 Tab(
                     selected = pagerState.currentPage == index,
-                    onClick = { coroutineScope.launch { pagerState.animateScrollToPage(index) } },
+                    onClick = {
+                        coroutineScope.launch {
+                            pagerState.animateScrollToPage(index)
+                        } },
                     text = { Text(
                         text = title,
                         maxLines = 2,
@@ -201,11 +222,7 @@ val contactos: Map<String,List<Contacto>> = getContactos().groupBy { it.grupo }
 fun ItemContact(contacto: Contacto ){
     var expanded by remember { mutableStateOf(false) }
     val opciones = listOf("salir del grupo", "Info. grupo", "Crear acceso directo")
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 20.dp, vertical = 8.dp)
-    ) {
+    Box() {
 
         Row(
             modifier = Modifier
@@ -240,7 +257,7 @@ fun ItemContact(contacto: Contacto ){
         DropdownMenu(
             expanded = expanded,
             onDismissRequest = { expanded = false },
-            offset = DpOffset(0.dp, 0.dp)
+            offset = DpOffset(20.dp, 0.dp)
 
         ) {
             opciones.forEach { opcion ->
