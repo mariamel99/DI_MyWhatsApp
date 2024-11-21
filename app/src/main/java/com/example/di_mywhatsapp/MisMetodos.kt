@@ -1,5 +1,9 @@
 package com.example.di_mywhatsapp
 import androidx.annotation.DrawableRes
+import androidx.compose.animation.graphics.ExperimentalAnimationGraphicsApi
+import androidx.compose.animation.graphics.res.animatedVectorResource
+import androidx.compose.animation.graphics.res.rememberAnimatedVectorPainter
+import androidx.compose.animation.graphics.vector.AnimatedImageVector
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -10,7 +14,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -42,6 +45,7 @@ import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -105,8 +109,11 @@ fun MyTopBar(
     )
 }
 
+@OptIn(ExperimentalAnimationGraphicsApi::class)
 @Composable
 fun MyFAB(){
+    val image = AnimatedImageVector.animatedVectorResource(R.drawable.avd_tick_cross)
+    var atEnd by rememberSaveable { mutableStateOf(false) }
 
     FloatingActionButton(
         modifier = Modifier
@@ -114,9 +121,13 @@ fun MyFAB(){
         containerColor = MaterialTheme.colorScheme.primary,
         onClick = {}
     ) {
-        Icon(
-            imageVector = Icons.Default.Check,
-            contentDescription = "ArrowBack"
+        Image(
+            painter = rememberAnimatedVectorPainter(image,atEnd),
+            contentDescription = "VectorDrawable",
+            modifier = Modifier.clickable {
+                atEnd= !atEnd
+            }
+
         )
     }
 }
@@ -129,24 +140,27 @@ fun MainScreen(modifier: Modifier){
         pageCount = { tabs.size }
     )
     val coroutineScope = rememberCoroutineScope()
-    Column (modifier = modifier.fillMaxSize()){
+    Column (modifier= modifier.fillMaxSize()) {
         TabRow(
             selectedTabIndex = pagerState.currentPage,
             contentColor = MaterialTheme.colorScheme.onPrimary,
-            containerColor = MaterialTheme.colorScheme.primary) {
+            containerColor = MaterialTheme.colorScheme.primary
+        ) {
             tabs.forEachIndexed { index, title ->
                 Tab(
                     selected = pagerState.currentPage == index,
                     onClick = {
                         coroutineScope.launch {
                             pagerState.animateScrollToPage(index)
-                        } },
-                    text = { Text(
-                        text = title,
-                        maxLines = 2,
-                        overflow = TextOverflow.Ellipsis,
-                        fontSize = 18.sp
-                    )
+                        }
+                    },
+                    text = {
+                        Text(
+                            text = title,
+                            maxLines = 2,
+                            overflow = TextOverflow.Ellipsis,
+                            fontSize = 18.sp
+                        )
                     }
                 )
             }
@@ -155,16 +169,17 @@ fun MainScreen(modifier: Modifier){
             state = pagerState,
             modifier = Modifier.fillMaxSize()
         ) { page ->
-            when(page){
-                0-> Chats()
-                1-> Novedades()
-                2-> Llamadas()
+            when (page) {
+                0 -> Chats()
+                1 -> Novedades()
+                2 -> Llamadas()
             }
 
         }
-
-
     }
+
+
+
 }
 
 fun getContactos(): List<Contacto> {
@@ -222,7 +237,7 @@ val contactos: Map<String,List<Contacto>> = getContactos().groupBy { it.grupo }
 fun ItemContact(contacto: Contacto ){
     var expanded by remember { mutableStateOf(false) }
     val opciones = listOf("salir del grupo", "Info. grupo", "Crear acceso directo")
-    Box() {
+    Box{
 
         Row(
             modifier = Modifier
@@ -274,30 +289,41 @@ fun ItemContact(contacto: Contacto ){
 
 }
 
+@OptIn(ExperimentalAnimationGraphicsApi::class)
 @Composable
 fun Novedades(){
+    val image = AnimatedImageVector.animatedVectorResource(R.drawable.avd_pause_play)
+    var atEnd by rememberSaveable { mutableStateOf(false) }
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally) {
-        Text(
-            textAlign = TextAlign.Center,
-            text = "Novedades",
-            style = MaterialTheme.typography.bodyLarge
+        Image(
+            painter = rememberAnimatedVectorPainter(image,atEnd),
+            contentDescription = "VectorDrawable",
+            modifier = Modifier.clickable {
+                atEnd= !atEnd
+            }
         )
+
     }
 
 }
 
+@OptIn(ExperimentalAnimationGraphicsApi::class)
 @Composable
 fun Llamadas(){
+    val image = AnimatedImageVector.animatedVectorResource(R.drawable.avd_smile_sad)
+    var atEnd by rememberSaveable { mutableStateOf(false) }
     Column(
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(
-            textAlign = TextAlign.Center,
-            text = "Llamadas",
-            style = MaterialTheme.typography.bodyLarge
+        horizontalAlignment = Alignment.CenterHorizontally) {
+        Image(
+            painter = rememberAnimatedVectorPainter(image,atEnd),
+            contentDescription = "VectorDrawable",
+            modifier = Modifier.clickable {
+                atEnd= !atEnd
+            }
         )
+
     }
 }

@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">DI_MyWhatsApp</string>
+    <string name="tick">"M4.8,13.4 L9,17.6 M10.4,16.2 L19.6,7"</string>
+    <string name="cross">"M6.4,6.4 L17.6,17.6 M6.4,17.6 L17.6,6.4"</string>
+    <string name="pause1">"M 6 5 L 6 19 L 10 19 L 10 5 Z"</string>
+    <string name="pause2">"M 14 19 L 18 19 L 18 5 L 14 5 Z"</string>
+    <string name="play1">"M 8 5.14 L 8 19.14 L 11.456 16.661 L 11.456 7.339 Z"</string>
+    <string name="play2">"M 11.245 16.795 L 19 12.14 L 19 12.14 L 11.245 7.205 Z"</string>
+    <string name="cara">"M 50,50 m -48,0 a 48,48 0 1,0 96,0 a 48,48 0 1,0 -96,0"</string>
+    <string name="ojoizquierdo">"M 35,40 m -7,0 a 7,7 0 1,0 14,0 a 7,7 0 1,0 -14,0"</string>
+    <string name="ojoderecho">"M 65,40 m -7,0 a 7,7 0 1,0 14,0 a 7,7 0 1,0 -14,0"</string>
+    <string name="bocatriste">"M 30,75 Q 50,55 70,75"</string>
+    <string name="bocasonriente">"M 30,65 Q 50,85 70,65"</string>
+    <string name="ojoizquierdoabierto">"M 25,30 Q 35,30 45,30"</string>
+    <string name="ojoderechoabierto">"M 55,30 Q 65,30 75,30"</string>
+    <string name="ojoizquierdocerrado">"M 25,30 Q 35,47 45,30"</string>
+    <string name="ojoderechocerrado">"M 55,30 Q 65,47 75,30"</string>
+
 </resources>

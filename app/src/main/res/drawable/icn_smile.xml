@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="400dp"
+    android:height="400dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100"
+    >
+    <path
+        android:name="cara"
+        android:fillColor="#FFC107"
+        android:strokeLineCap="square"
+        android:strokeWidth="2"
+        android:pathData="@string/cara" />
+    <path
+        android:name="ojoizquierdo"
+        android:fillColor="#000"
+        android:strokeLineCap="square"
+        android:strokeWidth="2"
+        android:pathData="@string/ojoizquierdo" />
+    <path
+        android:name="ojoderecho"
+        android:fillColor="#000"
+        android:strokeLineCap="square"
+        android:strokeWidth="2"
+        android:pathData="@string/ojoderecho" />
+    <path
+        android:name="ojoizquierdoabierto"
+        android:fillColor="#000"
+        android:strokeLineCap="square"
+        android:strokeWidth="2"
+        android:pathData="@string/ojoizquierdoabierto" />
+    <path
+        android:name="ojoderechoabierto"
+        android:fillColor="#000"
+        android:strokeLineCap="square"
+        android:strokeWidth="2"
+        android:pathData="@string/ojoderechoabierto" />
+    <path
+        android:name="bocasonriente"
+        android:strokeColor="#000"
+        android:strokeLineCap="square"
+        android:strokeWidth="2"
+        android:pathData="@string/bocasonriente" />
+
+</vector>
