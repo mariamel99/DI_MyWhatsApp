@@ -24,17 +24,18 @@
         android:strokeWidth="2"
         android:pathData="@string/ojoderecho" />
     <path
-        android:name="ojoizquierdoabierto"
-        android:fillColor="#000"
-        android:strokeLineCap="square"
-        android:strokeWidth="2"
-        android:pathData="@string/ojoizquierdoabierto" />
-    <path
         android:name="ojoderechoabierto"
-        android:fillColor="#000"
+        android:fillColor="#FFC107"
         android:strokeLineCap="square"
         android:strokeWidth="2"
         android:pathData="@string/ojoderechoabierto" />
+    <path
+        android:name="ojoizquierdoabierto"
+        android:fillColor="#FFC107"
+        android:strokeLineCap="square"
+        android:strokeWidth="2"
+        android:pathData="@string/ojoizquierdoabierto" />
+
     <path
         android:name="bocasonriente"
         android:strokeColor="#000"

@@ -22,7 +22,6 @@ import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.DropdownMenu
@@ -55,7 +54,6 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
@@ -134,7 +132,7 @@ fun MyFAB(){
 @Composable
 @OptIn(ExperimentalFoundationApi::class)
 fun MainScreen(modifier: Modifier){
-    val tabs = listOf("Chats", "Novedades", "Llamadas")
+    val tabs = listOf("Chats", "Pause", "Smile","Star")
     val pagerState = rememberPagerState(
         initialPage = 0,
         pageCount = { tabs.size }
@@ -171,8 +169,9 @@ fun MainScreen(modifier: Modifier){
         ) { page ->
             when (page) {
                 0 -> Chats()
-                1 -> Novedades()
-                2 -> Llamadas()
+                1 -> Pause()
+                2 -> Smile()
+                3-> Star()
             }
 
         }
@@ -291,7 +290,7 @@ fun ItemContact(contacto: Contacto ){
 
 @OptIn(ExperimentalAnimationGraphicsApi::class)
 @Composable
-fun Novedades(){
+fun Pause(){
     val image = AnimatedImageVector.animatedVectorResource(R.drawable.avd_pause_play)
     var atEnd by rememberSaveable { mutableStateOf(false) }
     Column(
@@ -311,8 +310,27 @@ fun Novedades(){
 
 @OptIn(ExperimentalAnimationGraphicsApi::class)
 @Composable
-fun Llamadas(){
+fun Smile(){
     val image = AnimatedImageVector.animatedVectorResource(R.drawable.avd_smile_sad)
+    var atEnd by rememberSaveable { mutableStateOf(false) }
+    Column(
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally) {
+        Image(
+            painter = rememberAnimatedVectorPainter(image,atEnd),
+            contentDescription = "VectorDrawable",
+            modifier = Modifier.clickable {
+                atEnd= !atEnd
+            }
+        )
+
+    }
+}
+
+@OptIn(ExperimentalAnimationGraphicsApi::class)
+@Composable
+fun Star(){
+    val image = AnimatedImageVector.animatedVectorResource(R.drawable.avd_debujar_estrella)
     var atEnd by rememberSaveable { mutableStateOf(false) }
     Column(
         verticalArrangement = Arrangement.Center,
